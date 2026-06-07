@@ -7,32 +7,35 @@
 MotorController motorController;
 String serialBuffer = "";
 
+HardwareSerial Serial0(0);
+
 void setup() {
-  Serial.begin(115200);
+  Serial0.begin(115200, SERIAL_8N1, 3, 1);
   motorController.init();
-  Serial.println("ESP32 Car initialized");
-  Serial.println("Waiting for gesture commands...");
+  Serial0.println("ESP32 Car initialized");
+  Serial0.println("Using UART0: TX=GPIO1, RX=GPIO3");
+  Serial0.println("Waiting for gesture commands...");
 }
 
 void processGesture(const String& gesture) {
   if (gesture.equalsIgnoreCase("gun")) {
     motorController.moveForward();
-    Serial.println("[CMD] Forward");
+    Serial0.println("[CMD] Forward");
   } else if (gesture.equalsIgnoreCase("five")) {
     motorController.stop();
-    Serial.println("[CMD] Stop");
+    Serial0.println("[CMD] Stop");
   } else if (gesture.equalsIgnoreCase("six")) {
     motorController.moveBackward();
-    Serial.println("[CMD] Backward");
+    Serial0.println("[CMD] Backward");
   } else {
-    Serial.print("[CMD] Unknown gesture: ");
-    Serial.println(gesture);
+    Serial0.print("[CMD] Unknown gesture: ");
+    Serial0.println(gesture);
   }
 }
 
 void loop() {
-  while (Serial.available() > 0) {
-    char c = Serial.read();
+  while (Serial0.available() > 0) {
+    char c = Serial0.read();
     serialBuffer += c;
     
     int startIdx = serialBuffer.indexOf(PROTOCOL_START);
