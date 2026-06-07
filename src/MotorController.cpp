@@ -1,10 +1,10 @@
 #include "MotorController.h"
 
 void MotorController::init() {
-  pinMode(IN1, OUTPUT);
-  pinMode(IN2, OUTPUT);
-  pinMode(IN3, OUTPUT);
-  pinMode(IN4, OUTPUT);
+  pinMode(Left, OUTPUT);
+  pinMode(Right, OUTPUT);
+  pinMode(Forward, OUTPUT);
+  pinMode(Backward, OUTPUT);
   pinMode(ENA, OUTPUT);
   pinMode(ENB, OUTPUT);
   
@@ -18,10 +18,8 @@ void MotorController::moveForward(int speed) {
   currentSpeed = speed;
   currentDirection = 'F';
   
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+  digitalWrite(Forward, HIGH);
+  digitalWrite(Backward, LOW);
   
   analogWrite(ENA, speed);
   analogWrite(ENB, speed);
@@ -31,10 +29,8 @@ void MotorController::moveBackward(int speed) {
   currentSpeed = speed;
   currentDirection = 'B';
   
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+  digitalWrite(Forward, LOW);
+  digitalWrite(Backward, HIGH);
   
   analogWrite(ENA, speed);
   analogWrite(ENB, speed);
@@ -44,10 +40,9 @@ void MotorController::turnLeft(int speed) {
   currentSpeed = speed;
   currentDirection = 'L';
   
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+  digitalWrite(Left, HIGH);
+  digitalWrite(Right, LOW);
+
   
   analogWrite(ENA, speed);
   analogWrite(ENB, speed);
@@ -57,10 +52,8 @@ void MotorController::turnRight(int speed) {
   currentSpeed = speed;
   currentDirection = 'R';
   
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+  digitalWrite(Left, LOW);
+  digitalWrite(Right, HIGH);
   
   analogWrite(ENA, speed);
   analogWrite(ENB, speed);
@@ -70,10 +63,10 @@ void MotorController::stop() {
   currentSpeed = 0;
   currentDirection = 'S';
   
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
+  digitalWrite(Left, LOW);
+  digitalWrite(Right, LOW);
+  digitalWrite(Forward, LOW);
+  digitalWrite(Backward, LOW);
   
   analogWrite(ENA, 0);
   analogWrite(ENB, 0);

@@ -2,6 +2,10 @@
 #define MOTOR_CONTROLLER_H
 
 #include <Arduino.h>
+#define PIN_L 2
+#define PIN_R 4
+#define PIN_F 15
+#define PIN_B 5
 
 class MotorController {
 public:
@@ -14,12 +18,13 @@ public:
   void stop();
   
 private:
-  const int IN1 = 14;
-  const int IN2 = 12;
-  const int IN3 = 13;
-  const int IN4 = 15;
+  const int Left = PIN_L;
+  const int Right = PIN_R;  
+  const int Forward = PIN_F;
+  const int Backward = PIN_B;
   const int ENA = 16;
   const int ENB = 17;
+
   
   int currentSpeed = 0;
   char currentDirection = 'S';
