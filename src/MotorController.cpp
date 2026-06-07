@@ -18,22 +18,20 @@ void MotorController::moveForward(int speed) {
   currentSpeed = speed;
   currentDirection = 'F';
   
-  digitalWrite(Forward, HIGH);
-  digitalWrite(Backward, LOW);
-  
-  analogWrite(ENA, speed);
-  analogWrite(ENB, speed);
+  //digitalWrite(Forward, HIGH);
+  analogWrite(Backward, 0);
+    // 使用PWM控制转向引脚的占空比
+  analogWrite(Forward, 100);
 }
 
 void MotorController::moveBackward(int speed) {
   currentSpeed = speed;
   currentDirection = 'B';
   
-  digitalWrite(Forward, LOW);
-  digitalWrite(Backward, HIGH);
-  
-  analogWrite(ENA, speed);
-  analogWrite(ENB, speed);
+  analogWrite(Forward, 0);
+ 
+  // 使用PWM控制转向引脚的占空比
+  analogWrite(Backward, 100);
 }
 
 void MotorController::turnLeft(int speed) {
@@ -42,21 +40,23 @@ void MotorController::turnLeft(int speed) {
   
   digitalWrite(Left, HIGH);
   digitalWrite(Right, LOW);
-
+    //digitalWrite(Forward, HIGH);
+  analogWrite(Backward, 0);
+    // 使用PWM控制转向引脚的占空比
+  analogWrite(Forward, 100);
   
-  analogWrite(ENA, speed);
-  analogWrite(ENB, speed);
 }
 
 void MotorController::turnRight(int speed) {
   currentSpeed = speed;
   currentDirection = 'R';
-  
   digitalWrite(Left, LOW);
   digitalWrite(Right, HIGH);
-  
-  analogWrite(ENA, speed);
-  analogWrite(ENB, speed);
+    //digitalWrite(Forward, HIGH);
+  analogWrite(Backward, 0);
+    // 使用PWM控制转向引脚的占空比
+  analogWrite(Forward, 100);
+
 }
 
 void MotorController::stop() {
@@ -64,9 +64,9 @@ void MotorController::stop() {
   currentDirection = 'S';
   
   digitalWrite(Left, LOW);
-  digitalWrite(Right, LOW);
-  digitalWrite(Forward, LOW);
-  digitalWrite(Backward, LOW);
+  digitalWrite(Right, LOW);   
+  analogWrite(Backward, 0);
+  analogWrite(Forward, 0);
   
   analogWrite(ENA, 0);
   analogWrite(ENB, 0);

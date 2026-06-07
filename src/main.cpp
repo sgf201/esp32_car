@@ -27,6 +27,12 @@ void processGesture(const String& gesture) {
   } else if (gesture.equalsIgnoreCase("six")) {
     motorController.moveBackward();
     Serial0.println("[CMD] Backward");
+  } else if (gesture.equalsIgnoreCase("one")) {
+    motorController.turnLeft();
+    Serial0.println("[CMD] Backward");
+  } else if (gesture.equalsIgnoreCase("fist")) {
+    motorController.turnRight();
+    Serial0.println("[CMD] Backward");
   } else {
     Serial0.print("[CMD] Unknown gesture: ");
     Serial0.println(gesture);
