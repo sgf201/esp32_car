@@ -21,7 +21,7 @@ void MotorController::moveForward(int speed) {
   //digitalWrite(Forward, HIGH);
   analogWrite(Backward, 0);
     // 使用PWM控制转向引脚的占空比
-  analogWrite(Forward, 100);
+  analogWrite(Forward, 180);
 }
 
 void MotorController::moveBackward(int speed) {
@@ -31,7 +31,7 @@ void MotorController::moveBackward(int speed) {
   analogWrite(Forward, 0);
  
   // 使用PWM控制转向引脚的占空比
-  analogWrite(Backward, 100);
+  analogWrite(Backward, 180);
 }
 
 void MotorController::turnLeft(int speed) {
@@ -43,7 +43,7 @@ void MotorController::turnLeft(int speed) {
     //digitalWrite(Forward, HIGH);
   analogWrite(Backward, 0);
     // 使用PWM控制转向引脚的占空比
-  analogWrite(Forward, 100);
+  analogWrite(Forward, 180);
   
 }
 
@@ -55,7 +55,7 @@ void MotorController::turnRight(int speed) {
     //digitalWrite(Forward, HIGH);
   analogWrite(Backward, 0);
     // 使用PWM控制转向引脚的占空比
-  analogWrite(Forward, 100);
+  analogWrite(Forward, 180);
 
 }
 
